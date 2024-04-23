@@ -25,7 +25,7 @@ let total_impressions = 0;
 let total_CTR = 0;
 // calculate total clicks, total impressions, total CTR
 let temp = [];
-
+console.log(reportsArray);
 for ( let report in reportsArray ) {
 	temp.push( reportsArray[report] );
 }
