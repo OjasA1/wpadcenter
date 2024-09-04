@@ -80,7 +80,7 @@ class Wpadcenter {
 		if ( defined( 'WPADCENTER_VERSION' ) ) {
 			$this->version = WPADCENTER_VERSION;
 		} else {
-			$this->version = '2.5.6';
+			$this->version = '2.5.7';
 		}
 		$this->plugin_name = 'wpadcenter';
 
