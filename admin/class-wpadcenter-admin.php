@@ -2998,9 +2998,11 @@ class Wpadcenter_Admin {
 		}
 
 		$ad_attributes = array();
-		$ad_alignment  = 'alignnone';
+		$alignment = '';
+		$ad_alignment = 'alignnone';
 		if ( array_key_exists( 'ad_alignment', $attributes ) ) {
-			$ad_alignment = $attributes['ad_alignment'];
+			$alignment = $attributes['ad_alignment'];
+			$ad_alignment = $this->get_alignment_position($alignment);
 		}
 		$max_width_check = false;
 		if ( array_key_exists( 'max_width_check', $attributes ) ) {
@@ -3025,7 +3027,7 @@ class Wpadcenter_Admin {
 
 		return Wpadcenter_Public::display_single_ad( $ad_id, $ad_attributes );
 	}
-
+	
 	/**
 	 * Renders gutenberg ads on frontend.
 	 *
@@ -3045,9 +3047,11 @@ class Wpadcenter_Admin {
 		}
 
 		$ad_attributes = array();
-		$ad_alignment  = 'alignnone';
+		$alignment = '';
+		$ad_alignment = 'alignnone';
 		if ( array_key_exists( 'ad_alignment', $attributes ) ) {
-			$ad_alignment = $attributes['ad_alignment'];
+			$alignment = $attributes['ad_alignment'];
+			$ad_alignment = $this->get_alignment_position($alignment);
 		}
 		$max_width_check = false;
 		if ( array_key_exists( 'max_width_check', $attributes ) ) {
@@ -3194,7 +3198,27 @@ class Wpadcenter_Admin {
 			return apply_filters( 'display_ordered_ads', $ordered_ads_atts );
 		}
 	}
-
+	/**
+	 * Giving the value to the alignment.
+	 *
+	 * @param array $attributes contains attributes of the ads.
+	 *
+	 * @since 2.5.7
+	 */
+	public function get_alignment_position($alignment){
+		if($alignment === 'alignright'){
+			return $alignment;
+		}
+		else if( $alignment === 'alignleft'){
+			return $alignment;
+		}
+		else if( $alignment === 'aligncenter'){
+			return $alignment;
+		}
+		else{
+			return 'alignnone';
+		}
+	}
 	/**
 	 * Renders gutenberg adgroup on frontend.
 	 *
@@ -3713,8 +3737,10 @@ class Wpadcenter_Admin {
 			$ad_id = sanitize_text_field( wp_unslash( $_POST['ad_id'] ) );
 		}
 		$ad_alignment = 'alignnone';
+		$alignment = '';
 		if ( ! empty( $_POST['alignment'] ) ) {
-			$ad_alignment = sanitize_text_field( wp_unslash( $_POST['alignment'] ) );
+			$alignment = $_POST['alignment'];
+			$ad_alignment = $this->get_alignment_position($alignment);
 		}
 		$max_width_check = false;
 		if ( ! empty( $_POST['max_width_check'] ) ) {
@@ -3768,8 +3794,10 @@ class Wpadcenter_Admin {
 			$ad_id = sanitize_text_field( wp_unslash( $_POST['ad_id'] ) );
 		}
 		$ad_alignment = 'alignnone';
+		$alignment = '';
 		if ( ! empty( $_POST['alignment'] ) ) {
-			$ad_alignment = sanitize_text_field( wp_unslash( $_POST['alignment'] ) );
+			$alignment = $_POST['alignment'];
+			$ad_alignment = $this->get_alignment_position($alignment);
 		}
 		$max_width_check = false;
 		if ( ! empty( $_POST['max_width_check'] ) ) {
